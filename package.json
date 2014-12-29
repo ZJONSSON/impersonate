@@ -1,0 +1,20 @@
+{
+  "name": "impersonate",
+  "version": "0.0.1",
+  "description": "Promisified googleapis with easy access to jwt tokens",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "(c) Ziggy Jonsson (http://github.com/zjonsson/)",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/ZJONSSON/impersonate.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "googleapis": "^1.0.22",
+    "bluebird": "^2.5.1",
+    "request": "^2.51.0"
+  }
+}
