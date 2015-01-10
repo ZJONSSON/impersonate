@@ -48,7 +48,8 @@ module.exports = function(options) {
         };
 
         jwt.request = function(options,callback,retry) {
-          options.headers = {Authorization : [jwt.credentials.token_type,jwt.credentials.access_token].join(' ')};
+          options.headers = options.headers || {};
+          options.headers.Authorization = [jwt.credentials.token_type,jwt.credentials.access_token].join(' ');
           if (options.gzip === undefined) options.gzip = true;
           return new Promise(function(resolve,reject) {
             request(options,function(err,res,d) {
