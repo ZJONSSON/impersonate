@@ -101,6 +101,14 @@ module.exports = function(options) {
           resolve(jwt);
         });
       });
+
+      tokens[email].request = function() {
+        var args = arguments;
+        return tokens[email].then(function(authClient) {
+          return authClient.request.apply(authClient,args);
+        });
+      };
+      
     }
     return tokens[email];
   }

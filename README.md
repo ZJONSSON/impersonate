@@ -1,5 +1,8 @@
 # Impersonate (googleapis jtw)
 
+#### changes in version 0.1
+* simple promise wrapper allows you to supply the impersonation object directly as `auth` without having to wrap the request inside the promise output of the impersonate function
+
 The Impersonate library promisifies [googleapis](https://www.npmjs.com/package/googleapis) and provides easy access to google service accounts (google apps for business) using the [JWT](http://self-issued.info/docs/draft-ietf-oauth-json-web-token.html) authentication.  Promisification is achived by patching underlying 'request' function inside `googleapis`.  Additionally, the patched request function will attempt to refresh the token automatically if the current token is invalid or expired. Please ensure this library is only used in strict adherence to all applicable laws and regulations, Google API terms and conditions and any compliance rules defined by the applicable organization regarding usage of service accounts. Use at your own risk (See LICENCE.md).
 
 Please note that `impersonate` monkey-patches the `googleapis` object, which might cause conflicts if you are using vanilla `googleapis` (same version) elsewhere in your runtime.  The local `googleapis` instance is available as a property of the `impersonate` function for easy access.
@@ -25,17 +28,16 @@ var impersonate = require('impersonate')({
       // optional cache -->  cache : require('cache-stampede').mongo(db.collection('jwt_tokens'))
     });
 
+var authClient = impersonate('email@gmail.com')
+
 function searchEmails(email,query) {
-  return impersonate(email)
-    .then(function(jwt) {
-      return impersonate.googleapis.gmail('v1')
-        .users
-        .messages
-        .list({
-          userId:email,
-          q:query,
-          auth:jwt
-        });
+  return impersonate.googleapis.gmail('v1')
+    .users
+    .messages
+    .list({
+      userId:email,
+      q:query,
+      auth:authClient
     });
 }
 ```
