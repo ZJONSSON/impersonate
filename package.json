@@ -1,6 +1,6 @@
 {
   "name": "impersonate",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Promisified googleapis with easy access to jwt tokens",
   "main": "index.js",
   "scripts": {
