@@ -1,6 +1,6 @@
 {
   "name": "impersonate",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Promisified googleapis with easy access to jwt tokens",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,6 @@
   "dependencies": {
     "googleapis": "~1.0.22",
     "bluebird": "~3.1.5",
-    "request": "~2.76.0"
+    "request": "~2.78.0"
   }
 }
